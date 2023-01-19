@@ -19,7 +19,7 @@ function NewsArticleListByCategory({articles, category}) {
 }
 export default NewsArticleListByCategory
 export async function getServerSideProps(context) {
-    const { params } = context
+    const { params, req, res, query } = context
     const { category } = params
     const response = await fetch (`http://localhost:4000/news?category=${category}`)
     const data = await response.json()
