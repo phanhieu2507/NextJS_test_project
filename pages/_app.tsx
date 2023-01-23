@@ -1,6 +1,24 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import Footer from '@/layout/Footer'
+import Header from '@/layout/Header'
+import 'styles/globals.css'
+import 'styles/layout.css'
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }) {
+  if (Component.getLayout) {
+    return Component.getLayout(<Component {...pageProps} />)
+  }
+  return (
+    <>
+      <Head>
+        <title>Codevolution</title>
+        <meta name='description' content='Awesome YouTube channel' />
+      </Head>
+      <Header />
+      <Component {...pageProps} />
+      <Footer />
+    </>
+  )
 }
+
+export default MyApp
